@@ -54,6 +54,7 @@ int main(void)
 		LCD_displayChar(Temp / 10 + '0');
 		LCD_displayChar(Temp % 10 + '0');
 		_delay_ms(500);
+		LCD_clear();
 		_delay_ms(5);
 		Led_One_Toggle();
 		Led_Two_Toggle();
