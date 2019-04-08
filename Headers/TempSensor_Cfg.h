@@ -9,6 +9,10 @@
 #ifndef TEMPSENSOR_CFG_H_
 #define TEMPSENSOR_CFG_H_
 
+/*Definionations About ADC*/
+#define VREF 5
+#define Bit_Mode 253
+
 #define  Max_Elemnts 6
 
 typedef struct Temp

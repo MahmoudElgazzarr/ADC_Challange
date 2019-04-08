@@ -30,6 +30,8 @@ int main(void)
 	UART_Config_S.ClockPolarity = UART_RisingPol;   /* Set UART Clock Polarity ( Rising Edge or Falling Edge ) */
 	/*LCD Init*/
 	LCD_init();
+	/*Inalize Buzzer As OUTPUT*/
+	DDRB |= (1<<PINB3);
 	/* init UART */
 	UART_Init ();
 	/*Led init*/
@@ -41,6 +43,8 @@ int main(void)
 	DDRA &=~(1<<PINA0);
 	/*Enable ADC*/
 	ADC_Enable();
+	
+	_delay_ms(50);
 	while (1)
 	{
 		/*Read Temp*/
@@ -56,6 +60,18 @@ int main(void)
 		_delay_ms(500);
 		LCD_clear();
 		_delay_ms(5);
+		/*If Temp > 40 Turn On Buzzer*/
+		if(Temp > 40)
+		{
+			/*Turn On Buzzer*/
+			PORTB |= (1<<PINB3);
+		}
+		/*If Temp < 40 Turn Of Buzzer*/
+		else
+		{
+			/*Turn Off Buzzer*/
+			PORTB &=~(1<<PINB3);
+		}
 		Led_One_Toggle();
 		Led_Two_Toggle();
 		_delay_ms(500);
